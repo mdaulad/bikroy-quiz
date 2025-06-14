@@ -1,1 +1,105 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>বিক্রয় কুইজ</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(to right, #ffb347, #ffcc33);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .quiz-container {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      background-color: #ff6f00;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #e65100;
+    }
+
+    .result {
+      font-size: 20px;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .fb-btn {
+      background-color: #1877f2;
+    }
+
+    .fb-btn:hover {
+      background-color: #0e5bb5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quiz-container">
+    <h1>আপনার জন্য একটি প্রশ্ন</h1>
+    <p>আপনি কি বিক্রয়.কম ব্যবহার করেন?</p>
+    <button onclick="showResult('yes')">হ্যাঁ</button>
+    <button onclick="showResult('no')">না</button>
+
+    <div id="result" class="result" style="display:none;"></div>
+  </div>
+
+  <script>
+    function showResult(answer) {
+      const resultDiv = document.getElementById("result");
+      if (answer === 'yes') {
+        resultDiv.innerHTML = `
+          <p>অভিনন্দন! আপনি একটি পুরস্কার জিতেছেন!</p>
+          <a href="https://www.facebook.com/Mdaulad" target="_blank">
+            <button class="fb-btn">আপনার প্রোফাইলে যান</button>
+          </a>
+        `;
+      } else {
+        resultDiv.innerHTML = `
+          <p>তথ্য নেওয়া হয়েছে। ধন্যবাদ!</p>
+        `;
+      }
+      resultDiv.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
 
