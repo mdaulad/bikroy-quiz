@@ -3,12 +3,25 @@ let totalSharesRequired = 5;
 let timerValue = 30;
 let timerInterval;
 
+const questions = [
+  {
+    q: "তোমার বন্ধু কে?",
+    options: ["Md. Awlad", "শয়তান"]
+  },
+  {
+    q: "তুমি কয়টা ফেসবুক একাউন্ট ব্যবহার করো?",
+    options: ["১টা", "২টা", "৩+", "মনে নাই"]
+  },
+  {
+    q: "তুমি কি কখনো কাউকে পাসওয়ার্ড দিয়ে দিয়েছো?",
+    options: ["হ্যাঁ", "না", "ভুলে দিয়েছিলাম", "একবার দিয়েছিলাম"]
+  }
+];
+
+let currentQuestionIndex = 0;
+
 function startQuiz() {
-  document.getElementById("question").innerText = "তোমার বন্ধু কে?";
-  document.getElementById("options").innerHTML = `
-    <button onclick="nextStep()">Md. Awlad</button>
-    <button onclick="nextStep()">শয়তান</button>
-  `;
+  showQuestion();
   startTimer();
 }
 
@@ -18,13 +31,35 @@ function startTimer() {
     document.getElementById("timer").innerText = "⏳ সময়: " + timerValue + " সেকেন্ড বাকি";
     if (timerValue <= 0) {
       clearInterval(timerInterval);
-      nextStep(); // টাইম শেষ হলে অটো পরবর্তী ধাপে যাবে
+      showShareSection();
     }
   }, 1000);
 }
 
-function nextStep() {
-  clearInterval(timerInterval);
+function showQuestion() {
+  const q = questions[currentQuestionIndex];
+  document.getElementById("question").innerText = q.q;
+  document.getElementById("options").innerHTML = "";
+
+  q.options.forEach(option => {
+    const btn = document.createElement("button");
+    btn.innerText = option;
+    btn.onclick = nextQuestion;
+    document.getElementById("options").appendChild(btn);
+  });
+}
+
+function nextQuestion() {
+  currentQuestionIndex++;
+  if (currentQuestionIndex < questions.length) {
+    showQuestion();
+  } else {
+    clearInterval(timerInterval);
+    showShareSection();
+  }
+}
+
+function showShareSection() {
   document.getElementById("quiz").style.display = "none";
   document.getElementById("share-section").style.display = "block";
 }
@@ -41,7 +76,7 @@ function showFinalMessage() {
   document.getElementById("share-section").style.display = "none";
   document.getElementById("final-message").innerHTML = `
     <h2>😈 "মারা খা!"</h2>
-    <p>এত লোভ কেন? 🤭<br>বি:দ্র: এটা বানিয়েছি আপনাদের সতর্ক করার জন্য যেন কেউ আপনার ফেসবুক/বিকাশ পাসওয়ার্ড না নেয়।</p>
+    <p>এত লোভ কেন? 🤭<br><strong>বি:দ্র:</strong> এটা বানিয়েছি আপনাদের সতর্ক করার জন্য যেন কেউ আপনার ফেসবুক/বিকাশ পাসওয়ার্ড না নেয়।</p>
   `;
 }
 
