@@ -1,105 +1,106 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>বিক্রয় কুইজ</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bikroy Quiz</title>
   <style>
     body {
-      font-family: "Segoe UI", sans-serif;
-      background: linear-gradient(to right, #ffb347, #ffcc33);
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .quiz-container {
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-      width: 90%;
-      max-width: 400px;
+      font-family: sans-serif;
       text-align: center;
-      animation: fadeIn 1s ease-in-out;
+      padding: 20px;
+      background: #fdf6e3;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
+    .quiz-container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
-
-    h1 {
-      font-size: 24px;
+    .question {
+      font-size: 1.2em;
       margin-bottom: 20px;
     }
-
-    button {
+    .options button {
       display: block;
       width: 100%;
-      padding: 12px;
       margin: 10px 0;
-      font-size: 16px;
+      padding: 10px;
       border: none;
-      border-radius: 10px;
-      background-color: #ff6f00;
+      border-radius: 5px;
+      background: #4CAF50;
       color: white;
-      cursor: pointer;
-      transition: background 0.3s ease;
+      font-size: 16px;
     }
-
-    button:hover {
-      background-color: #e65100;
+    .options button:hover {
+      background: #45a049;
     }
-
     .result {
-      font-size: 20px;
-      margin-top: 20px;
-      font-weight: bold;
-    }
-
-    .fb-btn {
-      background-color: #1877f2;
-    }
-
-    .fb-btn:hover {
-      background-color: #0e5bb5;
+      font-size: 1.3em;
+      color: #333;
     }
   </style>
 </head>
 <body>
-
   <div class="quiz-container">
-    <h1>আপনার জন্য একটি প্রশ্ন</h1>
-    <p>আপনি কি বিক্রয়.কম ব্যবহার করেন?</p>
-    <button onclick="showResult('yes')">হ্যাঁ</button>
-    <button onclick="showResult('no')">না</button>
-
-    <div id="result" class="result" style="display:none;"></div>
+    <div id="quiz">
+      <div class="question" id="question">Loading...</div>
+      <div class="options" id="options"></div>
+    </div>
   </div>
 
   <script>
-    function showResult(answer) {
-      const resultDiv = document.getElementById("result");
-      if (answer === 'yes') {
-        resultDiv.innerHTML = `
-          <p>অভিনন্দন! আপনি একটি পুরস্কার জিতেছেন!</p>
-          <a href="https://www.facebook.com/Mdaulad" target="_blank">
-            <button class="fb-btn">আপনার প্রোফাইলে যান</button>
-          </a>
-        `;
-      } else {
-        resultDiv.innerHTML = `
-          <p>তথ্য নেওয়া হয়েছে। ধন্যবাদ!</p>
-        `;
+    const quizData = [
+      {
+        question: "আপনি কি সত্যিই একটি iPhone 15 Pro জিততে চান?",
+        options: ["হ্যাঁ", "না"]
+      },
+      {
+        question: "আপনার প্রিয় কালার কোনটি?",
+        options: ["লাল", "নীল", "সবুজ", "কালো"]
+      },
+      {
+        question: "আপনি কতদিন ধরে Bikroy ব্যবহার করছেন?",
+        options: ["১ বছর", "২ বছর", "নতুন", "জানি না"]
       }
-      resultDiv.style.display = "block";
+    ];
+
+    let currentQuestion = 0;
+
+    function loadQuestion() {
+      const q = quizData[currentQuestion];
+      document.getElementById('question').innerText = q.question;
+      const optionsDiv = document.getElementById('options');
+      optionsDiv.innerHTML = '';
+      q.options.forEach(option => {
+        const btn = document.createElement('button');
+        btn.innerText = option;
+        btn.onclick = nextQuestion;
+        optionsDiv.appendChild(btn);
+      });
     }
+
+    function nextQuestion() {
+      currentQuestion++;
+      if (currentQuestion < quizData.length) {
+        loadQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      document.getElementById('quiz').innerHTML = `
+        <div class="result">
+          অভিনন্দন! আপনি নির্বাচিত হয়েছেন 🎉<br><br>
+          <a href="https://www.facebook.com/md.aulad" style="color: blue; text-decoration: underline;">এখন যোগাযোগ করুন</a>
+        </div>
+      `;
+    }
+
+    loadQuestion();
   </script>
-
 </body>
-</html>
-
+  </html>
