@@ -1,39 +1,214 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bikroy.com কুইজ 🎉</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bikroy.com কুইজ - iPhone 16 জিতুন!</title>
+  <style>
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    img.logo {
+      width: 150px;
+      margin-bottom: 10px;
+    }
+    .question {
+      font-size: 1.5em;
+      margin: 20px 0;
+    }
+    .options button {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      background: #1e88e5;
+      color: white;
+      cursor: pointer;
+    }
+    .timer {
+      font-size: 1.2em;
+      color: #d32f2f;
+      margin-bottom: 15px;
+    }
+    .share-buttons button {
+      margin: 5px;
+      padding: 10px 20px;
+      background: #43a047;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #reward-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #ff9800;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .final-message {
+      margin-top: 30px;
+      font-size: 1.2em;
+      color: green;
+      white-space: pre-line;
+    }
+    @media (max-width: 600px) {
+      .options button, .share-buttons button, #reward-btn {
+        width: 90%;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <img src="https://i.ibb.co/3RFqRg7/bikroy-logo.png" alt="Bikroy Logo" style="max-width: 180px; margin-bottom: 15px;">
-    <h1>🎉 Bikroy.com এর ১৩ বছর পূর্ণ হওয়ার উপলক্ষে iPhone 16 Pro Max জিতার সুযোগ!</h1>
-    <p>কিছু প্রশ্নের উত্তর দিয়ে জিতে নিন আকর্ষণীয় পুরস্কার 🎁</p>
 
-    <div class="timer" id="timer">⏳ সময়: 30 সেকেন্ড বাকি</div>
+<img src="https://www.bikroy.com/favicon.ico" alt="Bikroy Logo" class="logo" />
+<h2>🎉 Bikroy.com এর ১৩ বছর পূর্ণ হওয়ার উপলক্ষে <b>iPhone 16 Pro Max</b> জিতার সুযোগ!</h2>
+<p>কিছু প্রশ্নের উত্তর দিয়ে জিতে নিন আকর্ষণীয় পুরস্কার 🎁</p>
 
-    <div id="quiz">
-      <div class="question" id="question">Loading...</div>
-      <div class="options" id="options"></div>
-    </div>
+<div class="timer" id="timer">⏳ সময়: 30 সেকেন্ড বাকি</div>
 
-    <div id="share-section" style="display:none;">
-      <div>👇 ৫ জন বন্ধুদের সাথে শেয়ার করুন:</div>
-      <div class="share-buttons">
-        <button onclick="shareClick('facebook')">Facebook এ শেয়ার</button>
-        <button onclick="shareClick('whatsapp')">WhatsApp এ শেয়ার</button>
-        <button onclick="shareClick('messenger')">Messenger এ শেয়ার</button>
-        <button onclick="shareClick('Copy)">COPY তে শেয়ার</button>
-      </div>
-      <div id="share-count">শেয়ার হয়েছে: 0/5</div>
-      <button id="reward-btn" onclick="showFinalMessage()" disabled>🎁 পুরস্কার গ্রহণ করুন</button>
-    </div>
+<div id="quiz">
+  <div class="question" id="question">লোড হচ্ছে...</div>
+  <div class="options" id="options"></div>
+</div>
 
-    <div class="final-message" id="final-message"></div>
+<div id="share-section" style="display:none;">
+  <div>👇 ৫ জন বন্ধুদের সাথে শেয়ার করুন:</div>
+  <div class="share-buttons">
+    <button onclick="shareClick('facebook')">Facebook এ শেয়ার</button>
+    <button onclick="shareClick('whatsapp')">WhatsApp এ শেয়ার</button>
+    <button onclick="shareClick('messenger')">Messenger এ শেয়ার</button>
+    <button onclick="shareClick('imo')">Imo (লিংক কপি)</button>
   </div>
+  <div id="share-count">শেয়ার হয়েছে: 0/5</div>
+  <button id="reward-btn" onclick="showFinalMessage()" disabled>🎁 পুরস্কার গ্রহণ করুন</button>
+</div>
 
-  <script src="script.js"></script>
+<div class="final-message" id="final-message"></div>
+
+<script>
+  let questions = [
+    {
+      question: "তোমার বন্ধু কে?",
+      options: ["Md. Awlad", "শয়তান"],
+      answer: "Md. Awlad"
+    },
+    {
+      question: "Bikroy.com কত বছর পূর্ণ করেছে?",
+      options: ["১৩", "১২", "১৫"],
+      answer: "১৩"
+    },
+    {
+      question: "iPhone 16 Pro Max কোন ব্র্যান্ডের?",
+      options: ["Apple", "Samsung", "Nokia"],
+      answer: "Apple"
+    },
+    {
+      question: "বাংলাদেশের রাজধানী কী?",
+      options: ["ঢাকা", "চট্টগ্রাম", "রাজশাহী"],
+      answer: "ঢাকা"
+    },
+    {
+      question: "১+১ = ?",
+      options: ["২", "৩", "১১"],
+      answer: "২"
+    },
+    {
+      question: "Facebook এর মালিক কে?",
+      options: ["মার্ক জাকারবার্গ", "ইলন মাস্ক", "বিল গেটস"],
+      answer: "মার্ক জাকারবার্গ"
+    }
+  ];
+
+  let currentQuestion = 0;
+  let shareCount = 0;
+  const totalSharesRequired = 5;
+  let timer = 30;
+
+  function loadQuestion() {
+    if (currentQuestion < questions.length) {
+      const q = questions[currentQuestion];
+      document.getElementById("question").innerText = q.question;
+      const optionsHtml = q.options.map(option =>
+        `<button onclick="handleAnswer('${option}')">${option}</button>`
+      ).join("");
+      document.getElementById("options").innerHTML = optionsHtml;
+    }
+  }
+
+  function handleAnswer(selected) {
+    currentQuestion++;
+    if (currentQuestion < questions.length) {
+      loadQuestion();
+    } else {
+      document.getElementById("quiz").style.display = "none";
+      document.getElementById("share-section").style.display = "block";
+    }
+  }
+
+  function startTimer() {
+    const interval = setInterval(() => {
+      timer--;
+      document.getElementById("timer").innerText = `⏳ সময়: ${timer} সেকেন্ড বাকি`;
+      if (timer <= 0) {
+        clearInterval(interval);
+        document.getElementById("timer").innerText = "⏰ সময় শেষ!";
+        document.getElementById("quiz").style.display = "none";
+      }
+    }, 1000);
+  }
+
+  function shareClick(platform) {
+    const pageUrl = window.location.href;
+    const shareText = "🔥 Bikroy.com এর ১৩ বছর পূর্তিতে iPhone 16 Pro Max জিতুন!\n" + pageUrl;
+    let shareLink = "";
+
+    switch(platform) {
+      case "facebook":
+        shareLink = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
+        break;
+      case "whatsapp":
+        shareLink = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+        break;
+      case "messenger":
+        shareLink = `https://www.facebook.com/dialog/send?link=${encodeURIComponent(pageUrl)}&app_id=123456789&redirect_uri=${encodeURIComponent(pageUrl)}`;
+        break;
+      case "imo":
+        navigator.clipboard.writeText(shareText).then(() => {
+          alert("✅ লিংক কপি হয়েছে! এখন Imo খুলে মেসেজ পাঠান 📲");
+        }).catch(() => {
+          alert("❌ কপি করতে ব্যর্থ হয়েছে। ম্যানুয়ালি কপি করুন।");
+        });
+        break;
+    }
+
+    if (platform !== "imo") {
+      window.open(shareLink, "_blank");
+    }
+
+    shareCount++;
+    document.getElementById("share-count").innerText = `শেয়ার হয়েছে: ${shareCount}/${totalSharesRequired}`;
+    if (shareCount >= totalSharesRequired) {
+      document.getElementById("reward-btn").disabled = false;
+    }
+  }
+
+  function showFinalMessage() {
+    document.getElementById("final-message").innerText =
+      "🎉 আপনি প্রতারিত হয়েছেন!\nএত লোভ কেন? 😈\n\nবি:দ্র: এই কুইজ বানানো হয়েছে আপনাকে সতর্ক করার জন্য যেন কেউ ফেসবুক, বিকাশ ইত্যাদির পাসওয়ার্ড চুরি করতে না পারে।";
+  }
+
+  loadQuestion();
+  startTimer();
+</script>
+
 </body>
   </html>
