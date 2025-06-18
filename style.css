@@ -1,71 +1,97 @@
 body {
-  font-family: 'Hind Siliguri', sans-serif;
-  background-color: #fdf4ff;
-  color: #333;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
   text-align: center;
-  padding: 20px;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
   max-width: 500px;
   margin: auto;
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+  border-radius: 10px;
 }
 
-.highlight {
-  color: #e91e63;
+h1 {
+  color: #009f4d;
 }
 
 .timer {
   font-size: 20px;
-  margin-bottom: 20px;
+  margin: 15px 0;
+  color: #e91e63;
 }
 
 .question {
   font-size: 22px;
-  margin-bottom: 15px;
+  margin: 20px 0;
 }
 
 .options button {
   display: block;
   width: 100%;
   margin: 10px 0;
-  padding: 12px;
-  font-size: 18px;
-  background-color: #6200ea;
-  color: white;
+  padding: 10px;
+  background: #00a86b;
+  color: #fff;
   border: none;
-  border-radius: 10px;
-  cursor: pointer;
+  border-radius: 8px;
+  font-size: 18px;
 }
 
 .share-buttons button {
-  margin: 8px;
+  margin: 5px;
   padding: 10px 15px;
   font-size: 16px;
-  background-color: #03a9f4;
-  color: white;
   border: none;
-  border-radius: 8px;
-  cursor: pointer;
+  background-color: #2196f3;
+  color: white;
+  border-radius: 6px;
 }
 
 #reward-btn {
-  margin-top: 20px;
-  padding: 12px 20px;
+  margin-top: 15px;
+  padding: 10px 20px;
   font-size: 18px;
-  background-color: #4caf50;
-  color: white;
+  background: #ff9800;
+  color: #fff;
   border: none;
-  border-radius: 12px;
-  cursor: pointer;
+  border-radius: 10px;
 }
 
 .final-message {
-  margin-top: 30px;
-  font-size: 20px;
-  color: red;
+  margin-top: 20px;
+  font-size: 24px;
+  color: green;
+  font-weight: bold;
+}
+
+/* Mobile Responsive */
+@media (max-width: 500px) {
+  .container {
+    padding: 15px;
   }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .question {
+    font-size: 18px;
+  }
+
+  .options button,
+  .share-buttons button,
+  #reward-btn {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .final-message {
+    font-size: 18px;
+  }
+}
