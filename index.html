@@ -2,13 +2,14 @@
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bikroy Quiz - iPhone 16 Pro Max জিতুন!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bikroy.com কুইজ 🎉</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>🎉 Bikroy.com এর ১৩ বছর পূর্ণ হওয়ার উপলক্ষে <br><span class="highlight">iPhone 16 Pro Max</span> জিতার সুযোগ!</h1>
+    <img src="https://i.ibb.co/3RFqRg7/bikroy-logo.png" alt="Bikroy Logo" style="max-width: 180px; margin-bottom: 15px;">
+    <h1>🎉 Bikroy.com এর ১৩ বছর পূর্ণ হওয়ার উপলক্ষে iPhone 16 Pro Max জিতার সুযোগ!</h1>
     <p>কিছু প্রশ্নের উত্তর দিয়ে জিতে নিন আকর্ষণীয় পুরস্কার 🎁</p>
 
     <div class="timer" id="timer">⏳ সময়: 30 সেকেন্ড বাকি</div>
@@ -21,9 +22,10 @@
     <div id="share-section" style="display:none;">
       <div>👇 ৫ জন বন্ধুদের সাথে শেয়ার করুন:</div>
       <div class="share-buttons">
-        <button onclick="shareClick()">Facebook এ শেয়ার</button>
-        <button onclick="shareClick()">WhatsApp এ শেয়ার</button>
-        <button onclick="shareClick()">Messenger এ শেয়ার</button>
+        <button onclick="shareClick('facebook')">Facebook এ শেয়ার</button>
+        <button onclick="shareClick('whatsapp')">WhatsApp এ শেয়ার</button>
+        <button onclick="shareClick('messenger')">Messenger এ শেয়ার</button>
+        <button onclick="shareClick('imo')">IMO তে শেয়ার</button>
       </div>
       <div id="share-count">শেয়ার হয়েছে: 0/5</div>
       <button id="reward-btn" onclick="showFinalMessage()" disabled>🎁 পুরস্কার গ্রহণ করুন</button>
@@ -34,4 +36,4 @@
 
   <script src="script.js"></script>
 </body>
-      </html>
+  </html>
